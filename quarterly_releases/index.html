@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Mozilla Firefox Development Process</title>
+    <style>
+      td.week {
+        width: 38px;
+        text-align: center;
+      }
+      
+      a {
+        color: #2f27a1;
+      }
+      
+      td.left {
+        width: 114px;
+      }
+
+      td.firefox5 {
+        background-color: rgb(34, 23, 107);
+      }
+      td.firefox6 {
+        background-color: rgb(120, 120, 120);
+      }
+
+      td.firefox7 {
+        background-color: rgb(180, 180, 180);
+      }
+
+      td.firefox8 {
+        background-color: rgb(220, 220, 220);
+      }
+      
+      #center {
+        margin-left: auto ;
+        margin-right: auto ;
+        width: 912px;
+      }
+      img.diagram {
+        margin-top: 38px;
+        margin-bottom: 38px;
+      }
+      table.schedule {
+        margin-top: 38px;
+        margin-bottom: 38px;
+        border-top: 1px solid rgb(120, 120, 120);
+        border-bottom: 1px solid rgb(120, 120, 120);
+      }
+      
+      table.schedule tr {
+        height: 38px;
+        font-family: Helvetica, Arial, sans-serif;
+      }
+      
+      div.body-text {
+        font-family: Helvetica, Arial, sans-serif;
+        width: 684px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5em;
+      }
+      
+      h1 {
+        margin-top: 38px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="center">
+      <div class="body-text">
+        <h1>Mozilla Firefox: Development Process</h1>
+        <p><font color="red"><b>Status: Draft</b></font></p>
+        <p>This document describes the process by which changes to Firefox source code become a general Firefox release. Firefox has hundreds of millions of users, so some care is in order.</p>
+        <p>Firefox uses a <i>schedule-driven</i> process, where releases take place at regular intervals. That means each release happens regardless of whether a given feature is ready, and releases are not delayed to wait for a feature to stabilize. The goal of the process is to provide regular improvements to users without disrupting longer term work.</p>
+        <h1>Powers of Ten</h1>
+        <p>All changes to Firefox source code are initially integrated in the <a href="http://hg.mozilla.org/mozilla-central">mozilla-central</a> Mercurial repository. At scheduled intervals, the changes are imported from mozilla-central to release channels with wider audiences, such as the beta channel. Eventually, the changes appear in the general Firefox release. To get your patch into the mozilla-central repository, see <a href="https://developer.mozilla.org/En/Developer_Guide/How_to_Submit_a_Patch">How to Submit a Patch</a>. Larger features and projects are usually initially developed in <a href="https://wiki.mozilla.org/ReleaseEngineering:ProjectBranchPlanning">other repositories</a> which track mozilla-central.</p>
+      </div>      
+      <img class="diagram" src="img/sequence.png">
+      <div class="body-text">
+        <p>The four channels available are: mozilla-central (or "nightly"), firefox-experimental, firefox-beta, and Firefox (release) <font color=red><i>[these names are placeholders]</i></font>. The nightly channel gets new features as soon as they are ready, but it has the lowest stability of the four channels. The UI might change each day, and websites might not work at times. The firefox-experimental channel gets new features at regular intervals, but some of them might be disabled if it looks like they need more work. The beta channel receives only new features that are slated for the next Firefox release.</p>
+
+        <p>Each release channel is backed by a Mercurial repository containing a distinct copy of the Firefox source code.As a set of changes progresses through the repositories, features that aren't quite ready are disabled. <b>New features are never directly added to the firefox-experimental or firefox-beta channels.</b> Features that end up disabled or miss the scheduled transition to the experimental channel can be pulled again the next time the schedule permits. This policy does allow for features that take a long time to develop. It's just that they'll be present only on mozilla-central until they're ready. The number of users on each channel grows by roughly 10x as the changes make their way through the release process, and features on each channel require an accompanying improvement in stability.</p>
+      </div>
+      <img class="diagram" src="channels.png">
+      <div class="body-text">
+        <p>Again, <b>new features are only added to the release in the first phase</b>, with 100K users, because the rest of the time in the schedule is spent stabilizing those changes. Additionally, some features might only make it part of the way through the process for some period of time. For example, one could imagine a feature with a server-side component being available only on the experimental channel in order to test the scalability of companion server-side infrastructure.</p>
+        <h1>Releases Over Time</h1>
+        <p>Since the four stages of development each require some time, they can be staggered. This arrangement allows for continuous new feature development on mozilla-central, while the other channels are devoted to stabilizing features ready for a wider audience.</p>
+      </div>
+      <table class="schedule">
+        <tr>
+          <td class="left" colspan="3">Week</td>
+          <td class="week">1</td>
+          <td class="week">2</td>
+          <td class="week">3</td>
+          <td class="week">4</td>
+          <td class="week">5</td>
+          <td class="week">6</td>
+          <td class="week">7</td>
+          <td class="week">8</td>
+          <td class="week">9</td>
+          <td class="week">10</td>
+          <td class="week">11</td>
+          <td class="week">12</td>
+          <td class="week">13</td>
+          <td class="week">14</td>
+          <td class="week">15</td>
+          <td class="week">16</td>
+          <td class="week">17</td>
+          <td class="week">18</td>
+          <td class="week">19</td>
+          <td class="week">20</td>
+          <td class="week">21</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">mozilla-central</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+          <td class="firefox6" colspan="6">&nbsp;</td>
+          <td class="firefox7" colspan="6">&nbsp;</td>
+          <td class="week" colspan="3">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">fx-exp</td>
+          <td class="week" colspan="5">&nbsp;</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+          <td class="firefox6" colspan="6">&nbsp;</td>
+          <td class="firefox7" colspan="4">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">fx-beta</td>
+          <td class="week" colspan="10">&nbsp;</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+          <td class="firefox6" colspan="5">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">Firefox</td>
+          <td class="week" colspan="15">&nbsp;</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="week">&nbsp;</td>
+          <td class="week">&nbsp;</td>
+          <td class="week">&nbsp;</td>
+          <td class="week">1</td>
+          <td class="week">2</td>
+          <td class="week">3</td>
+          <td class="week">4</td>
+          <td class="week">5</td>
+          <td class="week">6</td>
+          <td class="week">7</td>
+          <td class="week">8</td>
+          <td class="week">9</td>
+          <td class="week">10</td>
+          <td class="week">11</td>
+          <td class="week">12</td>
+          <td class="week">13</td>
+          <td class="week">14</td>
+          <td class="week">15</td>
+          <td class="week">16</td>
+          <td class="week">17</td>
+          <td class="week">18</td>
+          <td class="week">19</td>
+          <td class="week">20</td>
+          <td class="week">21</td>
+        </tr>
+      </table>
+      <div class="body-text">
+        <p>In the diagram above, the blue bars represent one set of changes progressing through each channel. Simultaneously, work continues on the mozilla-central repository. Some features might need three cycles (18 weeks) on mozilla-central before they're ready. Since mozilla-central will be pulled into the firefox-experimental channel at week 6 and week 12, such <b>features will need to have a mechanism allowing them to be easily disabled</b>. Essentially, it needs to be easy to get the code on mozilla-central into a shippable state by disabling new code.</p>
+        <p>The mozilla-central, firefox-experimental, and firefox-beta channels receive frequent updates so changes to the program can be validated before appearing in the general release. The release channel receives updates from the beta channel periodically.</p>
+        <p>Under this system, there is a choice to ship a general Firefox release at week 16 and every six weeks thereafter. That doesn't mean a release will happen every six weeks, but the option will be available.</p>
+        <h2>Moving work from one channel to another</h2>
+        <p>New code migrates from one repository to another on a fixed schedule. For example, in the diagram above, new code from mozilla-central arrives in week 6, 12, and 18. It might seem expedient to land new features from mozilla-central as soon as they are "ready", but such a pattern would introduce too many variables into stability measurements. The one exception to this schedule is that unscheduled releases may be required for <b>critical security and stability</b> issues.</p>
+        <p>The first few days after code arrives on a channel are spent turning features off, backing out patches that cause stability problems, etc. There will be many judgement calls concerning whether it's possible to save a feature with a few spot fixes. As Mozilla gains experience with this process, more concrete policies will emerge. The reason this work happens <i>after</i> new code appears on a channel is so that work can continue uninterrupted in the other repositories.</p>
+        <p>If a feature needs to be turned off on a release channel, it's the <b>developer's responsibility</b> to make a patch to do so. If a feature can't be disabled without turning off or backing out other things, then those other things will also get turned off or backed out.</p>
+        <h1>The Lifecycle of One Release</h1>
+        <p>A single release takes about 16 weeks of time. This section outlines some key release management dates in that timeline. The diagram below describes where quality assurance, localization, security, extension compatibility, and security updates fit in.</p>
+      </div>
+      <table class="schedule">
+        <tr>
+          <td class="left" colspan="3">Week</td>
+          <td class="week">1</td>
+          <td class="week">2</td>
+          <td class="week">3</td>
+          <td class="week">4</td>
+          <td class="week">5</td>
+          <td class="week">6</td>
+          <td class="week">7</td>
+          <td class="week">8</td>
+          <td class="week">9</td>
+          <td class="week">10</td>
+          <td class="week">11</td>
+          <td class="week">12</td>
+          <td class="week">13</td>
+          <td class="week">14</td>
+          <td class="week">15</td>
+          <td class="week">16</td>
+          <td class="week">17</td>
+          <td class="week">18</td>
+          <td class="week">19</td>
+          <td class="week">20</td>
+          <td class="week">21</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">mozilla-central</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+          <td class="week" colspan="6">&nbsp;</td>
+          <td class="week" colspan="6">&nbsp;</td>
+          <td class="week" colspan="3">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">fx-exp</td>
+          <td class="week" colspan="5">&nbsp;</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+          <td class="week" colspan="6">&nbsp;</td>
+          <td class="week" colspan="4">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">fx-beta</td>
+          <td class="week" colspan="10">&nbsp;</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+          <td class="week" colspan="5">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">Firefox</td>
+          <td class="week" colspan="15">&nbsp;</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="week" colspan="24">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">L10N</td>
+          <td class="week" colspan="5">&nbsp;</td>
+          <td class="firefox5" colspan="10">&nbsp;</td>
+          <td class="week" colspan="3">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">Extensions</td>
+          <td class="week" colspan="5">&nbsp;</td>
+          <td class="firefox5" colspan="1">&nbsp;</td>
+          <td class="week" colspan="4">&nbsp;</td>
+          <td class="firefox5" colspan="1">&nbsp;</td>
+          <td class="week" colspan="10  ">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">Security</td>
+          <td class="week" colspan="11">&nbsp;</td>
+          <td class="firefox5" colspan="2">&nbsp;</td>
+          <td class="week" colspan="5">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">QA</td>
+          <td class="week" colspan="5">&nbsp;</td>
+          <td class="firefox5" colspan="10">&nbsp;</td>
+          <td class="week" colspan="3">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">Go / No Go</td>
+          <td class="week" colspan="10">&nbsp;</td>
+          <td class="firefox5" colspan="1">&nbsp;</td>
+          <td class="week" colspan="2">&nbsp;</td>
+          <td class="firefox5" colspan="1">&nbsp;</td>
+          <td class="week" colspan="7">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">Repo Pull</td>
+          <td class="week" colspan="5">&nbsp;</td>
+          <td class="firefox5" colspan="1">&nbsp;</td>
+          <td class="week" colspan="4">&nbsp;</td>
+          <td class="firefox5" colspan="1">&nbsp;</td>
+          <td class="week" colspan="4">&nbsp;</td>
+          <td class="firefox5" colspan="1">&nbsp;</td>
+          <td class="week" colspan="5">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="week">&nbsp;</td>
+          <td class="week">&nbsp;</td>
+          <td class="week">&nbsp;</td>
+          <td class="week">1</td>
+          <td class="week">2</td>
+          <td class="week">3</td>
+          <td class="week">4</td>
+          <td class="week">5</td>
+          <td class="week">6</td>
+          <td class="week">7</td>
+          <td class="week">8</td>
+          <td class="week">9</td>
+          <td class="week">10</td>
+          <td class="week">11</td>
+          <td class="week">12</td>
+          <td class="week">13</td>
+          <td class="week">14</td>
+          <td class="week">15</td>
+          <td class="week">16</td>
+          <td class="week">17</td>
+          <td class="week">18</td>
+          <td class="week">19</td>
+          <td class="week">20</td>
+          <td class="week">21</td>
+        </tr>
+      </table>
+      <div class="body-text">
+        <h2>Week 1-5</h2>
+        <p>Feature development on mozilla-central.</p>
+        <h2>Week 6</h2>
+        <p>The code on mozilla-central is pulled to the firefox-experimental channel.</p>
+        <p>Extension developers can rely on the APIs they see here, with the exception of new APIs that might end up disabled. The front end XUL might change for stability reasons, but not in major ways. Again, XUL related to new features may not be available if those features end up getting disabled.</p>
+        <p>en-US strings are frozen.</p>
+        <h2>Week 7-10</h2>
+        <p>Release management, QA, and engineering work to stabilize or disable new features.</p>
+        <h2>Week 11</h2>
+        <p>Release management makes a Go/No Go decision on whether the firefox-experimental channel can be pulled.</p>
+        <p>If the decision is made to Go, a repository pull from firefox-experimental to firefox-beta is done.</p>
+        <p>At this point all L10N strings are frozen. Locales without translations for new strings will get en-US language for the ones they are missing.</p>
+        <h2>Week 12-13</h2>
+        <p>Release management, QA, and engineering work to stabilize any issues that arise as the code is exposed to the firefox-beta channel's wider audience.</p>
+        <p>Security patches from the shadow security repository are landed. <font color="red"><b>n.b.: exact timing and mechanics undecided.</b></font></p>
+        <h2>Week 14</h2>
+        <p>Release management makes a Go/No Go to make release the contents of the firefox-beta channel to the general audience.</p>
+        <h2>Week 16</h2>
+        <p>If there's a release to do, it happens during this week.</p>
+        <h1 id="bootstrapping">Transition and Bootstrapping</h1>
+        <p>This section describes how Mozilla will transition to the process described above. Firefox 4 took about a year to develop, and the proposed schedule is quite a bit faster.</p>
+        <p>For Mozilla to make a clean break from long, feature-driven release schedules, the project will need find a way to transition to schedule-driven releases. The accumulation of patches on mozilla-central during the initial rollout of Firefox 4 is a primary concern. The way we're going to handle this problem is by taking an extremely early cut at Firefox 5. In the table below, there's not yet a calendar date associated with "Week 1", but it will come very soon after the general release of Firefox 4.</p>
+      </div>
+      <table class="schedule">
+        <tr>
+          <td class="left" colspan="3">Week</td>
+          <td class="week">1</td>
+          <td class="week">2</td>
+          <td class="week">3</td>
+          <td class="week">4</td>
+          <td class="week">5</td>
+          <td class="week">6</td>
+          <td class="week">7</td>
+          <td class="week">8</td>
+          <td class="week">9</td>
+          <td class="week">10</td>
+          <td class="week">11</td>
+          <td class="week">12</td>
+          <td class="week">13</td>
+          <td class="week">14</td>
+          <td class="week">15</td>
+          <td class="week">16</td>
+          <td class="week">17</td>
+          <td class="week">18</td>
+          <td class="week">19</td>
+          <td class="week">20</td>
+          <td class="week">21</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">mozilla-central</td>
+          <td class="firefox5" colspan="3">&nbsp;</td>
+          <td class="firefox6" colspan="6">&nbsp;</td>
+          <td class="firefox7" colspan="6">&nbsp;</td>
+          <td class="firefox8" colspan="6">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">fx-experimental</td>
+          <td class="week" colspan="2">&nbsp;</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+          <td class="firefox6" colspan="6">&nbsp;</td>
+          <td class="firefox7" colspan="6">&nbsp;</td>
+          <td class="firefox8" colspan="1">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">fx-beta</td>
+          <td class="week" colspan="7">&nbsp;</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+          <td class="firefox6" colspan="6">&nbsp;</td>
+          <td class="firefox7" colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">Firefox</td>
+          <td class="week" colspan="12">&nbsp;</td>
+          <td class="firefox5" colspan="6">&nbsp;</td>
+          <td class="firefox6" colspan="3">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="week">&nbsp;</td>
+          <td class="week">&nbsp;</td>
+          <td class="week">&nbsp;</td>
+          <td class="week">1</td>
+          <td class="week">2</td>
+          <td class="week">3</td>
+          <td class="week">4</td>
+          <td class="week">5</td>
+          <td class="week">6</td>
+          <td class="week">7</td>
+          <td class="week">8</td>
+          <td class="week">9</td>
+          <td class="week">10</td>
+          <td class="week">11</td>
+          <td class="week">12</td>
+          <td class="week">13</td>
+          <td class="week">14</td>
+          <td class="week">15</td>
+          <td class="week">16</td>
+          <td class="week">17</td>
+          <td class="week">18</td>
+          <td class="week">19</td>
+          <td class="week">20</td>
+          <td class="week">21</td>
+        </tr>
+      </table>
+      <div class="body-text">
+        <p>The goal of this proposed initial release pattern is to limit patch build up in mozilla-central, as well as establish a regular six week cadence for release go/no-go decisions thereafter.</p>
+        <h2>Channel Update System</h2>
+        <p>For this plan to work at all, we need establish the firefox-experimental and firefox-beta channels. The plan is to seed them with roughly 500K users on the experimental channel, and about 1.5 million people on the firefox-beta channel. We'll use the current Firefox 4 beta audience for this. Once the channels are available as a choice in the general Firefox release, their audiences should grow.</p>
+        <p>There's also a dependency on the updater code and UI needed for this system in the first place, and it will be difficult to get it done in time.</p>
+        <h2>Security Releases</h2>
+        <p>This proposal makes security updates occur along with Firefox releases, meaning we'll no longer be maintaining old branches. Having security branches for each major update is untenable if we release as often as we aim to.</p>
+        <h2>Silent Updates</h2>
+        <p>This proposal also requires changes to our software update behavior to make them happen more automatically in the background and interrupt the user less often. Otherwise, we will disrupt fx-beta users too much. There will also need to be an option for users to completely disable automatic updates, so that they can manage their own upgrade process.</p>
+        <h2>Extension Compatibility</h2>
+        <p>Extension compatibility is the trickiest part of the transition. In particular, it's not what the policy should be when a user has extensions that are incompatible with a new Firefox release. Each release will have at least 12 weeks to identify extensions that are no longer working, but this issue will be complicated.</p>
+        <h2>What about Firefox 4.0.x?</h2>
+        <p>We'll be using existing branch maintenance processes for Firefox 4.0.x and Firefox 3.6.x security and stability updates.</p>
+        <p>&nbsp;</p>
+        <p><b>Acknowledgements:</b> Thanks to the following contributors for their input and ideas. Listed in alphabetical order by first name:</p>
+        <p>Alexander Limi,  Anthony LaForge,  Asa Dotzler,  Axel Hecht,  Benjamin Smedberg,  Brendan Eich,  Cheng Wang,  Christian Legnitto,  Damon Sicore,  Daniel Veditz,  David Anderson,  David Ascher,  David Mandelin,  Ehsan Akhgari,  Erica Jostedt,  Jay Sullivan,  John O'Duinn,  Johnathan Nightingale,  Johnny Stenback,  Juan Becerra,  Justin Wood,  L. David Baron,  Laura Mesa,  Lucas Adamski,  Mark Finkle,  Matt Evans,  Mayumi Matsuno,  Michael Morgan,  Mike Beltzner,  Mike Shaver,  Mitchell Baker,  Nick Thomas,  Rob Sayre,  Robert Kaiser,  Robert O'Callahan,  Robert Strong,  Sheila Mooney,  Stuart Parmenter</p>
+      </div>
+    </div>
+  </body>
+</html>
