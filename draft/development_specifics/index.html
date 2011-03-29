@@ -362,8 +362,7 @@
            becomes 7.0pre, mozilla-experimental becomes 6.0pre, and
            mozilla-beta becomes 5.0.
         </p>
-        
-        
+
         <h4>Chrome-style</h4>
         <p><img src="img/chrome_versions.png"></p>
         <p>The version number is in the form "[major firefox version].[mozilla-beta build #].[mozilla-experimental build #].[mozilla-central build #]"
@@ -397,7 +396,7 @@
         </p>
         <h2>Project Repositories</h2>
         <p>Project repositories are cheap and developers should not hesitate
-        to ask for one.
+        to <a href="https://wiki.mozilla.org/ReleaseEngineering:ProjectBranchPlanning">ask for one.</a>
 
         <p>Project repositories should be grouped by team or area in 
            subdirectories under 
@@ -411,6 +410,10 @@
            automated tools to enumerate the available project repositories
            easily.
         </p>
+
+        <p>Please note the above naming convention is different from what
+        was used in the past. Existing project repositories may need
+        to be moved around to fit in with the new scheme.</p>
 
         <p>Project repositories automatically get an update channel when 
            nightly builds are enabled. The
@@ -555,6 +558,20 @@
         <p>Please do note that chemspills / rapid response updates are not 
         reflected in these schedules and will be dealt with on an as-needed
          basis.</p>
+
+        <h2>Cloning Mechanics</h2>
+        <p>The inital thought was to blow away what is in the downstream repo
+        with upstream repo content at the clone point, but there were concerns
+        with losing history and the impact on l10n.</p>
+        <p>Developers and RelEng have also expressed concerns with relanding
+        backouts and pref-offs every time we merge repos.</p>
+        <p>Eventually the cloning / merging should be automated but for Firefox
+        5 it will likely be manual. Chiristian is tasked with organizing or
+        actually doing the merges during Firefox 5 development.
+        </p>
+        <p>
+            More discussion is needed for the merging mechanics.
+        </p>
 
         <h2>Rapid Release / Chemspill Updates</h2>
         <p>We are still in the information gathering phase and will
