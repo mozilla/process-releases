@@ -31,6 +31,26 @@
         background-color: rgb(220, 220, 220);
       }
       
+      td.l10n_central {
+        background-image: -moz-linear-gradient(center top ,
+        transparent 0%, transparent 90%,  rgb(34, 23, 107) 90%,
+        rgb(34, 23, 107) 100%);
+      }
+
+      td.l10n_exp {
+        background-color: rgb(34, 23, 107);
+      }
+
+      td.l10n_beta {
+        background-color: rgb(34, 23, 107);
+      }
+
+      td.l10n_release {
+        background-image: -moz-linear-gradient(center top ,
+        transparent 0%, transparent 10%,  rgb(34, 23, 107) 10%,
+        rgb(34, 23, 107) 100%);
+      }
+
       #center {
         margin-left: auto ;
         margin-right: auto ;
@@ -229,10 +249,32 @@
           <td class="week" colspan="24">&nbsp;</td>
         </tr>
         <tr>
-          <td class="left" colspan="3">L10N</td>
-          <td class="week" colspan="5">&nbsp;</td>
-          <td class="firefox5" colspan="10">&nbsp;</td>
+          <td class="left" colspan="3">l10n-central</td>
+          <td class="l10n_central" colspan="6">&nbsp;</td>
+          <td class="week" colspan="6">&nbsp;</td>
+          <td class="week" colspan="6">&nbsp;</td>
           <td class="week" colspan="3">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">l10n-exp</td>
+          <td class="week" colspan="5">&nbsp;</td>
+          <td class="l10n_exp" colspan="6">&nbsp;</td>
+          <td class="week" colspan="6">&nbsp;</td>
+          <td class="week" colspan="4">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">l10n-beta</td>
+          <td class="week" colspan="10">&nbsp;</td>
+          <td class="l10n_beta" colspan="6">&nbsp;</td>
+          <td class="week" colspan="5">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="left" colspan="3">Fx l10n</td>
+          <td class="week" colspan="15">&nbsp;</td>
+          <td class="l10n_release" colspan="6">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="week" colspan="24">&nbsp;</td>
         </tr>
         <tr>
           <td class="left" colspan="3">Extensions</td>
@@ -302,16 +344,18 @@
       <div class="body-text">
         <h2>Week 1-5</h2>
         <p>Feature development on mozilla-central.</p>
+        <p class="l10ncode">The feature development is tracked by a core of the localization community, giving feedback about l12y early in the development process.</p>
         <h2>Week 6</h2>
         <p>The code on mozilla-central is pulled to the firefox-experimental channel.</p>
         <p>Extension developers can rely on the APIs they see here, with the exception of new APIs that might end up disabled. The front end XUL might change for stability reasons, but not in major ways. Again, XUL related to new features may not be available if those features end up getting disabled.</p>
         <p>en-US strings are frozen.</p>
         <h2>Week 7-10</h2>
         <p>Release management, QA, and engineering work to stabilize or disable new features.</p>
+        <p class="l10ncode">The majority of localization teams finish their work on the product.</p>
         <h2>Week 11</h2>
         <p>Release management makes a Go/No Go decision on whether the firefox-experimental channel can be pulled.</p>
         <p>If the decision is made to Go, a repository pull from firefox-experimental to firefox-beta is done.</p>
-        <p>At this point all L10N strings are frozen. Locales without translations for new strings will get en-US language for the ones they are missing.</p>
+        <p class="l10ncode">Only minor changes to localizations are still taken.</p>
         <h2>Week 12-13</h2>
         <p>Release management, QA, and engineering work to stabilize any issues that arise as the code is exposed to the firefox-beta channel's wider audience.</p>
         <p>Security patches from the shadow security repository are landed. <font color="red"><b>n.b.: exact timing and mechanics undecided.</b></font></p>
@@ -319,6 +363,7 @@
         <p>Release management makes a Go/No Go to make release the contents of the firefox-beta channel to the general audience.</p>
         <h2>Week 16</h2>
         <p>If there's a release to do, it happens during this week.</p>
+        <p class="l10ncode">Localizations that are in beta are not pulled into the release channel.</p>
         <h1 id="bootstrapping">Transition and Bootstrapping</h1>
         <p>This section describes how Mozilla will transition to the process described above. Firefox 4 took about a year to develop, and the proposed schedule is quite a bit faster.</p>
         <p>For Mozilla to make a clean break from long, feature-driven release schedules, the project will need find a way to transition to schedule-driven releases. The accumulation of patches on mozilla-central during the initial rollout of Firefox 4 is a primary concern. The way we're going to handle this problem is by taking an extremely early cut at Firefox 5. In the table below, there's not yet a calendar date associated with "Week 1", but it will come very soon after the general release of Firefox 4.</p>
