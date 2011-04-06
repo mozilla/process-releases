@@ -99,13 +99,13 @@
                     <p>Just like the current repository</p>
                 </li>
                 <li>
-                    <h3>mozilla-experimental</h3>
+                    <h3>mozilla-aurora</h3>
                     <p>Stabilize work done on mozilla-central for release</p>
                 </li>
                 <li>
                     <h3>mozilla-beta</h3>
                     <p>Fix any issues that come up during the beta 
-                      validation of the mozilla-experimental stabilization</p>
+                      validation of the mozilla-aurora stabilization</p>
                 </li>
                 <li>
                     <h3>mozilla-release</h3>
@@ -122,13 +122,6 @@
                     </p>
                 </li>
             </ul>
-            <p>
-            The main goal of this repository naming scheme is consistency.
-            The repos have their default channel as part of their name.
-            This should make it so there is no confusion which channel a build
-            from a particular repo is pushed to.
-            Additionally, automated tools can key off the
-            names and infer channels without a lookup table.</p>
             <p> The general naming scheme should work
             equally well for other products if they decide to follow the same
             development/channel/repo model. Also note if in the future
@@ -142,10 +135,6 @@
             having to alter their local repos, and to prevent 
             needless changes to tools.
            </p>
-           <p class="discussion">
-            Please note product marketing isn't happy with the channel names,
-            which may or may not affect repo names. The UX team is also looking
-            into other, potentially better names.</p>
 
            <h3>Development vs Release</h3>
            <p>The repositories can generally be grouped into two overall 
@@ -162,14 +151,11 @@
            <p><img src="img/dev_release_split.png"></p>
 
         <h2>Update Channels</h2>
-        <p>As stated above, the update channel is embedded in each repository
-           name. Thus, for each of the above repositories in the form
-           [product]-[channel] we have the following channels:</p>
 
         <p><img src="img/channels.png"></p>
         <ul>
             <li>
-                <h3>central</h3>
+                <h3>nightly</h3>
                 <table>
                     <tr>
                         <th>Current Users</th>
@@ -192,14 +178,13 @@
                     </tr>
                     <tr>
                         <th>Branded</th>
-                        <td>Not branded as Firefox</td>
+                        <td>Not branded as Firefox, uses new "Nightly" icon</td>
                     </tr>
                 </table>
                 <p>Our current nightly audience.</p>
-                <p class="question"> Why not "nightly" for the channel name (as it is now)? Because there will be be nightly updates on the other channels and the nomenclature would get confusing quickly. Why not mozilla-central or trunk? Those refer to repos, not channels.</p>
             </li>
             <li>
-                <h3>experimental</h3>
+                <h3>aurora</h3>
                 <table>
                     <tr>
                         <th>Current Users</th>
@@ -223,11 +208,11 @@
                     </tr>
                     <tr>
                         <th>Branded</th>
-                        <td>Not branded as Firefox</td>
+                        <td>Not branded as Firefox, uses new "Aurora" icon</td>
                     </tr>
                 </table>
                 <p>
-                This is a new channel. We will discuss populating this channel artificially if need be. The hope is people will self-select into this channel due to the balance of new features and stability.</p>
+                This is a new channel. We will discuss populating this channel artificially if need be. The hope is people will self-select into this channel (either by downloading a build or using the in-product channel switcher) due to the balance of new features and stability.</p>
             </li>
             <li>
                 <h3>beta</h3>
@@ -288,11 +273,6 @@
             </li>
         </ul>
 
-        <p class="discussion">
-            Please note product marketing isn't happy with the channel names.
-            Because the names will be publicly communicated they are looking
-            into other, potentially better names.</p>
-
          <h2>What Happens Where?</h2>
          <ul>
             <li>
@@ -305,7 +285,7 @@
                 </ul>
             </li>
             <li>
-                <h3>mozilla-experimental</h3>
+                <h3>mozilla-aurora</h3>
                 <ul>
                     <li>Preffing off and backing out fixes/features
                          which the central channel exposes as
@@ -349,40 +329,32 @@
         </p>
 
         <h3>Firefox Versioning</h3>
-        <p class="discussion">
-        There are currently two version proposals for Firefox. 
-        <strong>Please give feedback or an alternate approach</strong>.</p>
 
-        <h4>Standard</h4>
-        <p><img src="img/old_versions.png"></p>
-        <p>During Firefox 5 development builds on mozilla-central identify as 
-           5.0pre. When the time comes for the mozilla-central &rarr;
-           mozilla-experimental merge mozilla-central becomes 6.0pre and
-           mozilla-experimental keeps 5.0pre. When the time comes for the
-           mozilla-experimental &rarr; mozilla-beta merge mozilla-central
-           becomes 7.0pre, mozilla-experimental becomes 6.0pre, and
-           mozilla-beta becomes 5.0.
-        </p>
+        <p>Unless major issues are discovered with the scheme, this is how
+        builds in the assorted repositories will identify themselves:</p>
 
-        <h4>Chrome-style</h4>
-        <p><img src="img/chrome_versions.png"></p>
-        <p>The version number is in the form "[major firefox version].[mozilla-beta build #].[mozilla-experimental build #].[mozilla-central build #]"
-        </p>
+        <p><img src="img/new_versions.png"></p>
+
         <p>
-        During Firefox 5 development mozilla-central would start out at
-        5.0.0.0. For every nightly build we increment the mozilla-central
-        position by one. When the time comes for the mozilla-central &rarr;
-        mozilla-experimental merge mozilla-central becomes 6.0.0.0 while
-        mozilla-experimental takes the previous mozilla-central number. For
-        every build on mozilla-experimental we increment the
-        mozilla-experimental slot. The process continues until a build is on 
-        mozilla-release with a frozen version number.
+            The following considerations are reflected in the versioning scheme:
         </p>
 
-        <p>For this versioning scheme to be successful we need a way to
-        query the latest build from a given repo and Release Engineering needs
-        a way to increment build numbers sanely.
+        <ul>
+            <li>No "pre" as there are known issues with sites sniffing
+            builds as Palm Pre devices</li>
+            <li>Ease of version comparisons between channels and releases</li>
+            <li>Amount of changes required to existing tools and systems</li>
+            <li>Ability to identify which channel a user is on from the build
+            </li>
+            <li>Beta and release versions should identify as the same version
+            to make sure beta testing is valid and no last-minute issues are
+            found due to a version change</li>
+        </ul>
+
+        <p class="question">
+            We aren't using "a" and "b" as it would be confusing as it relates to <strong>a</strong>urora and <strong>b</strong>eta.
         </p>
+
         <h3>Gecko versioning</h3>
         <p>
             Gecko versioning will tie into Firefox versioning
@@ -447,8 +419,8 @@
         <h3>mozilla-shadow</h3>
         <ul>
             <li>Shadows mozilla-central and takes additional security fixes</li>
-            <li>Merges into mozilla-experimental at the mozilla-central &rarr;
-            mozilla-experimental merge point</li>
+            <li>Merges into mozilla-aurora at the mozilla-central &rarr;
+            mozilla-aurora merge point</li>
         </ul>
         
         <h3>shadow channel</h3>
@@ -481,7 +453,7 @@
         
         <ul>
             <li>l10n-central</li>
-            <li>l10n-experimental</li>
+            <li>l10n-aurora</li>
             <li>l10n-beta</li>
             <li>l10n-release</li>
         </ul>
@@ -490,7 +462,7 @@
         Please be aware there is discussion about the l10n
         repo names and their content.
         Axel expressed the desire to have the current l10n-central repo
-        track mozilla-experimental and to create a new repo to track
+        track mozilla-aurora and to create a new repo to track
         mozilla-central. Christian feels the naming and content should
         be consistent as it is easy to get confused about what content is where
         and which mozilla-* repository l10n-* is shadowing.
@@ -502,13 +474,13 @@
         mozilla-central if they would like to as well but they won't be
         asked to explicitly.</p>
         <p>mozilla-central will be string frozen for en-US at the 
-        mozilla-central &rarr; mozilla-experimental merge point. <strong>No 
-        en-US strings will be allowed on mozilla-experimental</strong>. The
-        mozilla-central &rarr; mozilla-experimental merge date will happen on
+        mozilla-central &rarr; mozilla-aurora merge point. <strong>No 
+        en-US strings will be allowed on mozilla-aurora</strong>. The
+        mozilla-central &rarr; mozilla-aurora merge date will happen on
         schedule so the string freeze should not come as a surprise.
         </p>
         <p>For locales that don't track mozilla-central, their work is done in
-        l10n-experimental, which tracks mozilla-experimental. <strong>This means
+        l10n-aurora, which tracks mozilla-experimental. <strong>This means
         most locales have 6 weeks to complete their localizations</strong>.
         </p>
 
@@ -525,22 +497,16 @@
 
         <p><img src="img/ff5_schedule.png"></p>
 
-        <p>Rather than 6 weeks for mozilla-central, mozilla-experimental, and
+        <p>Rather than 6 weeks for mozilla-central, mozilla-aurora, and
         mozilla-beta we instead have 3 weeks for development on 
         mozilla-central, 5 weeks to converge and stabilize on 
-        mozilla-experimental, and 5 weeks to validate on mozilla-beta.</p>
+        mozilla-aurora, and 5 weeks to validate on mozilla-beta.</p>
 
         <h3>Firefox 6</h3>
         <p>Firefox 6 will start the normal schedule where every step in the
         cycle takes 6 weeks. Firefox 6's development cycle starts when 
-        Firefox 5 is cloned from mozilla-central to mozilla-experimental
+        Firefox 5 is cloned from mozilla-central to mozilla-aurora
         (on 2011-04-12).</p>
-        <p>Please note there will be a week-long period where updates are not
-            generated on both the experimental and beta channels (out of the
-            mozilla-experimental and mozilla-beta repos). This is due to 
-            the condensed Firefox 5 schedule:
-        </p>
-        <p><img src="img/gap.png"></p>
 
         <p>Again, because the schedule is fixed one can
         <a href="http://hg.mozilla.org/users/clegnitto_mozilla.com/release_tools/file/default/release_schedule.py">write a simple program</a> to print out important release
@@ -549,9 +515,9 @@
         <pre>
         Development on mozilla-central for Firefox 6 on 2011-04-12
             Development on mozilla-central for Firefox 6 ends on 2011-05-24
-        Pull from mozilla-central to mozilla-experimental for Firefox 6 on 2011-05-24
-            Development on mozilla-experimental for Firefox 6 ends on 2011-07-05
-        Pull from mozilla-experimental to mozilla-beta for Firefox 6 on 2011-07-05
+        Pull from mozilla-central to mozilla-aurora for Firefox 6 on 2011-05-24
+            Development on mozilla-aurora for Firefox 6 ends on 2011-07-05
+        Pull from mozilla-aurora to mozilla-beta for Firefox 6 on 2011-07-05
             Development on mozilla-beta for Firefox 6 ends on 2011-08-16
         Pull from mozilla-beta to mozilla-release for Firefox 6 on 2011-08-16
         </pre>
@@ -582,9 +548,9 @@
          <h3>Deferring work</h3>
          <p><strong>No work is deferred from upstream repos to downstream
             repos</strong>. If your feature / change isn't finished on
-            mozilla-central, mozilla-experimental is <strong>not</strong>
+            mozilla-central, mozilla-aurora is <strong>not</strong>
             the place to fix it up. If there is outstanding work on
-            mozilla-experimental <strong>do not plan</strong> to fix it in
+            mozilla-aurora <strong>do not plan</strong> to fix it in
             mozilla-beta. The clone / pull dates are published far in 
             advance so there should be ample time to plan. 
             <strong>
@@ -613,10 +579,10 @@
         </p>
         <h3>Preffing off / backing out happens after the clone</h3>
         <p>
-           When cloning from mozilla-central to mozilla-experimental
-           the backouts and pref offs take place on the mozilla-experimental
+           When cloning from mozilla-central to mozilla-aurora
+           the backouts and pref offs take place on the mozilla-aurora
            repo. This allows mozilla-central to use the complete allotted time
-           for development and utilizes mozilla-experimental's time for 
+           for development and utilizes mozilla-aurora's time for 
            convergence.
         </p>
       </div>
