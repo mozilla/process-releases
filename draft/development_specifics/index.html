@@ -89,7 +89,7 @@
         <a href="https://github.com/mozilla/process-releases">pull requests on GitHub</a>.</p>
 
 
-        <h2>Main Repositories</h2>
+        <a name="repositories" /><h2>Main Repositories</h2>
            
             <p><img src="img/repos.png"></p>
 
@@ -150,7 +150,7 @@
            </p>
            <p><img src="img/dev_release_split.png"></p>
 
-        <h2>Update Channels</h2>
+        <a name="channel-overview" /><h2>Update Channels</h2>
 
         <p><img src="img/channels.png"></p>
         <ul>
@@ -273,7 +273,7 @@
             </li>
         </ul>
 
-         <h2>What Happens Where?</h2>
+         <a name="channel-activities" /><h2>What Happens Where?</h2>
          <ul>
             <li>
                 <h3>mozilla-central</h3>
@@ -320,7 +320,7 @@
             </li>
          </ul>
 
-        <h2>Versioning</h2>
+        <a name="versioning" /><h2>Versioning</h2>
 
         
         <p>Because updates are (intended) to be silent and automatic 
@@ -328,7 +328,7 @@
         latest available build. This assumption simplifies things greatly.
         </p>
 
-        <h3>Firefox Versioning</h3>
+        <a name="versioning-firefox" /><h3>Firefox Versioning</h3>
 
         <p>Unless major issues are discovered with the scheme, this is how
         builds in the assorted repositories will identify themselves:</p>
@@ -355,7 +355,7 @@
             We aren't using "a" and "b" as it would be confusing as it relates to <strong>a</strong>urora and <strong>b</strong>eta.
         </p>
 
-        <h3>Gecko versioning</h3>
+        <a name="versioning-gecko" /><h3>Gecko versioning</h3>
         <p>
             Gecko versioning will tie into Firefox versioning
             regardless of the Firefox version scheme above.
@@ -406,7 +406,7 @@
          <strong>Please give feedback</strong>.
         </p>
 
-        <h2>The Shadow Repository</h2>
+        <a name="shadowrepo" /><h2>The Shadow Repository</h2>
         <p>Having a restricted shadow repository is new to Mozilla.
         We are trying to balance the fact we are open source with
         the need to secure our users by not publishing information about
@@ -448,7 +448,7 @@
         </table>
 
 
-        <h2>Localization</h2>
+        <a name="localization" /><h2>Localization</h2>
         <p>Localization work will be split into similar repositories:</p>
         
         <ul>
@@ -480,18 +480,18 @@
         schedule so the string freeze should not come as a surprise.
         </p>
         <p>For locales that don't track mozilla-central, their work is done in
-        l10n-aurora, which tracks mozilla-experimental. <strong>This means
+        l10n-aurora, which tracks mozilla-aurora. <strong>This means
         most locales have 6 weeks to complete their localizations</strong>.
         </p>
 
 
-        <h2>Schedule of Important Milestones</h2>
+        <a name="milestones" /><h2>Schedule of Important Milestones</h2>
 
         <p>In general, each stage of the process (and activity pertaining to
         a particular version) lasts for 6 weeks.<p>
         <p><img src="img/6_weeks.png"></p>
 
-        <h3>Firefox 5</h3>
+        <a name="milestones-ff5" /><h3>Firefox 5</h3>
         <p>Firefox 5 will be slightly different from future releases due to
         the development overlap (or lack thereof) with Firefox 4:</p>
 
@@ -502,7 +502,7 @@
         mozilla-central, 5 weeks to converge and stabilize on 
         mozilla-aurora, and 5 weeks to validate on mozilla-beta.</p>
 
-        <h3>Firefox 6</h3>
+        <a name="milestones-ff6" /><h3>Firefox 6</h3>
         <p>Firefox 6 will start the normal schedule where every step in the
         cycle takes 6 weeks. Firefox 6's development cycle starts when 
         Firefox 5 is cloned from mozilla-central to mozilla-aurora
@@ -512,7 +512,7 @@
         reflected in these schedules and will be dealt with on an as-needed
          basis.</p>
 
-        <h2>Cloning Mechanics</h2>
+        <a name="branching" /><h2>Cloning Mechanics</h2>
         <p>The inital thought was to blow away what is in the downstream repo
         with upstream repo content at the clone point, but there were concerns
         with losing history and the impact on l10n.</p>
