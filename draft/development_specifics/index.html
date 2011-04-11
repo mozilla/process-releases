@@ -513,18 +513,50 @@
          basis.</p>
 
         <a name="branching" /><h2>Cloning Mechanics</h2>
-        <p>The inital thought was to blow away what is in the downstream repo
-        with upstream repo content at the clone point, but there were concerns
-        with losing history and the impact on l10n.</p>
-        <p>Developers and RelEng have also expressed concerns with relanding
-        backouts and pref-offs every time we merge repos.</p>
-        <p>Eventually the cloning / merging should be automated but for Firefox
-        5 it will likely be manual. Chiristian is tasked with organizing or
-        actually doing the merges during Firefox 5 development.
-        </p>
-        <p>
-            More discussion is needed for the merging mechanics.
-        </p>
+        <p>The following describes the mozilla-central to mozilla-aurora mechanics. mozilla-aurora to mozilla-beta mechanics follow the same steps, with the exception of tagging (use BETA_BASE_<i>YYYYMMDD</i>), and versioning (strip off the a2 suffix).</p>
+        <ol>
+            <li>Never delete the aurora repo, we need the history.</li>
+            <li>Tag m-c with AURORA_BASE_<i>YYYYMMDD</i>.
+            <pre>
+            hg tag -R mozilla-central AURORA_BASE_`date +%Y%m%d`
+            hg out
+            # review
+            hg push
+            </pre>
+            </li>
+            <li>Pull from m-c to a new head on aurora.
+            <pre>
+            hg pull -R mozilla-aurora -r AURORA_BASE_<i>YYYYMMDD</i> http://hg.mozilla.org/mozilla-central
+            </pre>
+            </li>
+            <li>Bump aurora version.
+            <pre>
+            cd mozilla-aurora
+            sed -i -e 's/a1/a2/g' browser/config/version.txt js/src/config/milestone.txt config/milestone.txt
+            hg commit -m 'Version bump'
+            </pre></li>
+            <li>Set aurora branding in browser/confvars.sh (MOZ_BRANDING_DIRECTORY=browser/branding/aurora)</li>
+            <li>Human needs to review list of changes since the last
+            AURORA_BASE_<i>YYYYMMDD</i> tag, and figure out which changes to
+            bring forward, and which changes to throw away.</li>
+            <li>Use "hg transplant" to take the changes we want to bring
+            forward and bring over to the new head.</li>
+            <li>Human needs to resolve any merge conflicts.<br/>
+            Note: some specific files need careful human review of any
+            changes, even if there are no merge conflicts.  all.js,
+            firefox.js, configure.in, mozconfig</li>
+            <li>Safety check:<br/>
+            Diff new-head-on-aurora vs m-c == list of all previous aurora
+            backouts (smaller list?)<br/>
+            Diff new-head-on-aurora vs old-head-on-aurora == list of new code
+            changes in m-c (bigger list?)<br/>
+            Diff new-head-on-aurora vs a throw-away merge between
+            new-head-on-aurora and old-head-on-aurora.<br/>
+            </li>
+            <li>Mark the original head as closed, to prevent accidental
+            landings on the wrong head.</li>
+            <li>Human needs to "hg push" back to aurora</li>
+        </ol>
 
         <h2>Rapid Release / Chemspill Updates</h2>
         <p>We are still in the information gathering phase and will
