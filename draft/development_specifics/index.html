@@ -67,7 +67,7 @@
         margin-right: auto;
         line-height: 1.5em;
       }
-      
+
       h1 {
         margin-top: 38px;
       }
@@ -78,19 +78,19 @@
       <div class="body-text">
         <h1>Mozilla Firefox: Development Specifics</h1>
         <p style="color: red;"><b>Status: Draft</b></p>
-        
-        <h2>Overview</h2>
-        <p>This document discusses specifics related to Mozilla's newly proposed 
+
+        <h2 id="overview">Overview</h2>
+        <p>This document discusses specifics related to Mozilla's newly proposed
         <a href="../development_overview/">Firefox development model</a>.
         </p>
         <p>Please note this is a draft document and subject to change.</p>
         <p>Discussion should take place on <a href="https://groups.google.com/group/mozilla.dev.planning">dev-planning</a> and changes
-        should be submitted as 
+        should be submitted as
         <a href="https://github.com/mozilla/process-releases">pull requests on GitHub</a>.</p>
 
 
-        <a name="repositories" /><h2>Main Repositories</h2>
-           
+        <h2 id="repositories">Main Repositories</h2>
+
             <p><img src="img/repos.png"></p>
 
             <ul>
@@ -104,7 +104,7 @@
                 </li>
                 <li>
                     <h3>mozilla-beta</h3>
-                    <p>Fix any issues that come up during the beta 
+                    <p>Fix any issues that come up during the beta
                       validation of the mozilla-aurora stabilization</p>
                 </li>
                 <li>
@@ -113,7 +113,7 @@
                     Firefox binaries</p>
                     <p class="question">Why not copy to releases/mozilla-X.Y?
                     We currently do so to have a repo to use for
-                    .x releases. Because this new model doesn't have .x 
+                    .x releases. Because this new model doesn't have .x
                     releases (only chemspill/rapid response updates) we don't
                     need to copy to the releases directory and deal with the
                     version naming. That being said, we could still do
@@ -131,17 +131,17 @@
             </p>
             <p>
             mozilla-central was chosen as the main development repository name
-            due to familiarity, to prevent developers from 
-            having to alter their local repos, and to prevent 
+            due to familiarity, to prevent developers from
+            having to alter their local repos, and to prevent
             needless changes to tools.
            </p>
 
-           <h3>Development vs Release</h3>
-           <p>The repositories can generally be grouped into two overall 
-              processes: 
+           <h3 id="repo-processes">Development vs Release</h3>
+           <p>The repositories can generally be grouped into two overall
+              processes:
               development and release.
-              Project repositories and mozilla-central are part of the 
-              <em>development</em> process. 
+              Project repositories and mozilla-central are part of the
+              <em>development</em> process.
               The downstream repositories are part of the
               <em>release</em> process.</p>
            <p>This document mainly covers the release process. Details about
@@ -150,7 +150,7 @@
            </p>
            <p><img src="img/dev_release_split.png"></p>
 
-        <a name="channel-overview" /><h2>Update Channels</h2>
+        <h2 id="channel-overview">Update Channels</h2>
 
         <p><img src="img/channels.png"></p>
         <ul>
@@ -267,13 +267,13 @@
                     </tr>
                 </table>
                 <p>This is the current release channel. When a build is offered
-                on this channel it means a new version of Firefox has been 
+                on this channel it means a new version of Firefox has been
                 officially released.
                 </p>
             </li>
         </ul>
 
-         <a name="channel-activities" /><h2>What Happens Where?</h2>
+         <h2 id="channel-activities">What Happens Where?</h2>
          <ul>
             <li>
                 <h3>mozilla-central</h3>
@@ -292,13 +292,13 @@
                          which the central channel exposes as
                          problematic with a wider audience.</li>
                     <li>Remaining localizations</li>
-                    <li>Landing spot fixes to get the product in a shipping 
+                    <li>Landing spot fixes to get the product in a shipping
                         state</li>
                     <li>Merge from mozilla-shadow (see below)
                         and fixes/backouts for any
                         resulting issues</li>
                     <li>Preffing off and backing out fixes/features which
-                        were deemed ready but testing determined they in fact 
+                        were deemed ready but testing determined they in fact
                         were not</li>
                 </ul>
             </li>
@@ -314,22 +314,22 @@
                 <h3>mozilla-release</h3>
                 <ul>
                     <li>Nothing is landed. The repo is just for reference and
-                        available for cloning if a rapid response release 
+                        available for cloning if a rapid response release
                         is needed
                     </li>
                 </ul>
             </li>
          </ul>
 
-        <a name="versioning" /><h2>Versioning</h2>
+        <h2 id="versioning">Versioning</h2>
 
-        
-        <p>Because updates are (intended) to be silent and automatic 
-        we can generally assume a user on a given channel is on the 
+
+        <p>Because updates are (intended) to be silent and automatic
+        we can generally assume a user on a given channel is on the
         latest available build. This assumption simplifies things greatly.
         </p>
 
-        <a name="versioning-firefox" /><h3>Firefox Versioning</h3>
+        <h3 id="versioning-firefox">Firefox Versioning</h3>
 
         <p>Unless major issues are discovered with the scheme, this is how
         builds in the assorted repositories will identify themselves:</p>
@@ -356,29 +356,29 @@
             We aren't using "a" and "b" as it would be confusing as it relates to <strong>a</strong>urora and <strong>b</strong>eta.
         </p>
 
-        <a name="versioning-gecko" /><h3>Gecko versioning</h3>
+        <h3 id="versioning-gecko">Gecko versioning</h3>
         <p>
             Gecko versioning will tie into Firefox versioning
             regardless of the Firefox version scheme above.
-            For Firefox 5, the gecko version will be 5.0, for 
+            For Firefox 5, the gecko version will be 5.0, for
             Firefox 6, 6.0, etc.
         </p>
-        <p class="note">Please note that binary extensions will 
+        <p class="note">Please note that binary extensions will
         <a href="http://hg.mozilla.org/mozilla-central/rev/200a746e0fac">already need to
         be recompiled for Firefox 5</a>.
         </p>
 
-        <h2>Project Repositories</h2>
+        <h2 id="project-repos">Project Repositories</h2>
         <p>Project repositories are cheap and developers should not hesitate
         to <a href="https://wiki.mozilla.org/ReleaseEngineering:ProjectBranchPlanning">ask for one.</a>
 
-        <p>Project repositories should be grouped by team or area in 
-           subdirectories under 
+        <p>Project repositories should be grouped by team or area in
+           subdirectories under
            <em>hg.mozilla.org/projects</em>.
             In this scheme Tracemonkey can be found
            at <em>hg.mozilla.org/projects/js/tracemonkey</em>.
             Additional repos
-           for the js team would be created in 
+           for the js team would be created in
            <em>hg.mozilla.org/projects/js</em>
            as well. This should keep hg.mozilla.org organized and enable
            automated tools to enumerate the available project repositories
@@ -389,14 +389,14 @@
         was used in the past. Existing project repositories may need
         to be moved around to fit in with the new scheme.</p>
 
-        <p>Project repositories automatically get an update channel when 
+        <p>Project repositories automatically get an update channel when
            nightly builds are enabled. The
            naming convention for the channel is the path from root repo,
            with slashes converted to dashes.
            For the Tracemonkey example above, builds would be generated and
            posted to <em>projects-js-tracemonkey</em>.
         </p>
-        
+
 
         <p>Developers may also wish to check out one of the already existing
             <a href="https://wiki.mozilla.org/ReleaseEngineering/DisposableProjectBranches">disposable project
@@ -407,7 +407,7 @@
          <strong>Please give feedback</strong>.
         </p>
 
-        <a name="shadowrepo" /><h2>The Shadow Repository</h2>
+        <h2 id="shadowrepo">The Shadow Repository</h2>
         <p>Having a restricted shadow repository is new to Mozilla.
         We are trying to balance the fact we are open source with
         the need to secure our users by not publishing information about
@@ -422,7 +422,7 @@
             <li>Shadows mozilla-central and takes additional security fixes</li>
             <li>Merges into mozilla-central just before the mozilla-central &rarr; mozilla-aurora merge point</li>
         </ul>
-        
+
         <h3>shadow channel</h3>
         <table>
             <tr>
@@ -448,9 +448,9 @@
         </table>
 
 
-        <a name="localization" /><h2>Localization</h2>
+        <h2 id="localization">Localization</h2>
         <p>Localization work will be split into similar repositories:</p>
-        
+
         <ul>
             <li>l10n-central</li>
             <li>l10n-aurora</li>
@@ -466,15 +466,15 @@
         mozilla-central. Christian feels the naming and content should
         be consistent as it is easy to get confused about what content is where
         and which mozilla-* repository l10n-* is shadowing.
-        Axel is the ultimate 
+        Axel is the ultimate
         decision-maker with respect to l10n repositories.</p>
 
         <p>There will be 8 or so locales that track mozilla-central,
         localizing alongside en-US development. Other locales can track
         mozilla-central if they would like to as well but they won't be
         asked to explicitly.</p>
-        <p>mozilla-central will be string frozen for en-US at the 
-        mozilla-central &rarr; mozilla-aurora merge point. <strong>No 
+        <p>mozilla-central will be string frozen for en-US at the
+        mozilla-central &rarr; mozilla-aurora merge point. <strong>No
         en-US string changes will be allowed on mozilla-aurora</strong>. The
         mozilla-central &rarr; mozilla-aurora merge date will happen on
         schedule so the string freeze should not come as a surprise.
@@ -485,34 +485,34 @@
         </p>
 
 
-        <a name="milestones" /><h2>Schedule of Important Milestones</h2>
+        <h2 id="milestones">Schedule of Important Milestones</h2>
 
         <p>In general, each stage of the process (and activity pertaining to
         a particular version) lasts for 6 weeks.<p>
         <p><img src="img/6_weeks.png"></p>
 
-        <a name="milestones-ff5" /><h3>Firefox 5</h3>
+        <h3 id="milestones-ff5">Firefox 5</h3>
         <p>Firefox 5 will be slightly different from future releases due to
         the development overlap (or lack thereof) with Firefox 4:</p>
 
         <p><img src="img/ff5_schedule.png"></p>
 
         <p>Rather than 6 weeks for mozilla-central, mozilla-aurora, and
-        mozilla-beta we instead have 3 weeks for development on 
-        mozilla-central, 5 weeks to converge and stabilize on 
+        mozilla-beta we instead have 3 weeks for development on
+        mozilla-central, 5 weeks to converge and stabilize on
         mozilla-aurora, and 5 weeks to validate on mozilla-beta.</p>
 
-        <a name="milestones-ff6" /><h3>Firefox 6</h3>
+        <h3 id="milestones-ff6">Firefox 6</h3>
         <p>Firefox 6 will start the normal schedule where every step in the
-        cycle takes 6 weeks. Firefox 6's development cycle starts when 
+        cycle takes 6 weeks. Firefox 6's development cycle starts when
         Firefox 5 is cloned from mozilla-central to mozilla-aurora
         (on 2011-04-12).</p>
 
-        <p>Please do note that chemspills / rapid response updates are not 
+        <p>Please do note that chemspills / rapid response updates are not
         reflected in these schedules and will be dealt with on an as-needed
          basis.</p>
 
-        <a name="branching" /><h2>Cloning Mechanics</h2>
+        <h2 id="branching">Cloning Mechanics</h2>
         <p>The following describes the mozilla-central to mozilla-aurora mechanics. mozilla-aurora to mozilla-beta mechanics follow the same steps, with the exception of tagging (use BETA_BASE_<i>YYYYMMDD</i>), and versioning (strip off the a2 suffix).</p>
         <ol>
             <li>Never delete the aurora repo, we need the history.</li>
@@ -558,30 +558,30 @@
             <li>Human needs to "hg push" back to aurora</li>
         </ol>
 
-        <h2>Rapid Release / Chemspill Updates</h2>
+        <h2 id="chemspill">Rapid Release / Chemspill Updates</h2>
         <p>We are still in the information gathering phase and will
         have this section filled out in the next couple of days.</p>
 
-        <h2>General Observations</h2>
+        <h2 id="observations">General Observations</h2>
          <h3>Deferring work</h3>
          <p><strong>No work is deferred from upstream repos to downstream
             repos</strong>. If your feature / change isn't finished on
             mozilla-central, mozilla-aurora is <strong>not</strong>
             the place to fix it up. If there is outstanding work on
             mozilla-aurora <strong>do not plan</strong> to fix it in
-            mozilla-beta. The clone / pull dates are published far in 
-            advance so there should be ample time to plan. 
+            mozilla-beta. The clone / pull dates are published far in
+            advance so there should be ample time to plan.
             <strong>
               If it's not ready it should be backed out or preffed off.
             </strong>
-            There will be another release in 6-12 weeks for the fix to try 
+            There will be another release in 6-12 weeks for the fix to try
             to make it in again.</p>
          <h3>Time-based cloning</h3>
          <p>
             Cloning between repos <strong>will</strong> happen on schedule.
             Again, consistency is key. Groups will be able to plan and won't
-            need to be intimately involved with the release process 
-            to know where fixes are and where fixes should be landed. 
+            need to be intimately involved with the release process
+            to know where fixes are and where fixes should be landed.
          </p>
 
          <h3>The merge between release repos should be automatic</h3>
@@ -600,7 +600,7 @@
            When cloning from mozilla-central to mozilla-aurora
            the backouts and pref offs take place on the mozilla-aurora
            repo. This allows mozilla-central to use the complete allotted time
-           for development and utilizes mozilla-aurora's time for 
+           for development and utilizes mozilla-aurora's time for
            convergence.
         </p>
       </div>
