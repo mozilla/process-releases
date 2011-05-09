@@ -95,9 +95,9 @@
       </div>      
       <img class="diagram" src="img/sequence.png">
       <div class="body-text">
-        <p>The four channels available are: mozilla-central (or "nightly"), mozilla-aurora, firefox-beta, and Firefox (release) <font color=red><i>[these names are placeholders]</i></font>. The nightly channel gets new features as soon as they are ready, but it has the lowest stability of the four channels. The UI might change each day, and websites might not work at times. The mozilla-aurora channel gets new features at regular intervals, but some of them might be disabled if it looks like they need more work. The beta channel receives only new features that are slated for the next Firefox release.</p>
+        <p>The four channels available are: mozilla-central (or "nightly"), mozilla-aurora, mozilla-beta, and Firefox (release) <font color=red><i>[these names are placeholders]</i></font>. The nightly channel gets new features as soon as they are ready, but it has the lowest stability of the four channels. The UI might change each day, and websites might not work at times. The mozilla-aurora channel gets new features at regular intervals, but some of them might be disabled if it looks like they need more work. The beta channel receives only new features that are slated for the next Firefox release.</p>
 
-        <p>Each release channel is backed by a Mercurial repository containing a distinct copy of the Firefox source code.As a set of changes progresses through the repositories, features that aren't quite ready are disabled. <b>New features are never directly added to the mozilla-aurora or firefox-beta channels.</b> Features that end up disabled or miss the scheduled transition to the experimental channel can be pulled again the next time the schedule permits. This policy does allow for features that take a long time to develop. It's just that they'll be present only on mozilla-central until they're ready. The number of users on each channel grows by roughly 10x as the changes make their way through the release process, and features on each channel require an accompanying improvement in stability.</p>
+        <p>Each release channel is backed by a Mercurial repository containing a distinct copy of the Firefox source code.As a set of changes progresses through the repositories, features that aren't quite ready are disabled. <b>New features are never directly added to the mozilla-aurora or mozilla-beta channels.</b> Features that end up disabled or miss the scheduled transition to the experimental channel can be pulled again the next time the schedule permits. This policy does allow for features that take a long time to develop. It's just that they'll be present only on mozilla-central until they're ready. The number of users on each channel grows by roughly 10x as the changes make their way through the release process, and features on each channel require an accompanying improvement in stability.</p>
       </div>
       <img class="diagram" src="channels.png">
       <div class="body-text">
@@ -184,7 +184,7 @@
       </table>
       <div class="body-text">
         <p>In the diagram above, the blue bars represent one set of changes progressing through each channel. Simultaneously, work continues on the mozilla-central repository. Some features might need three cycles (18 weeks) on mozilla-central before they're ready. Since mozilla-central will be pulled into the mozilla-aurora channel at week 6 and week 12, such <b>features will need to have a mechanism allowing them to be easily disabled</b>. Essentially, it needs to be easy to get the code on mozilla-central into a shippable state by disabling new code.</p>
-        <p>The mozilla-central, mozilla-aurora, and firefox-beta channels receive frequent updates so changes to the program can be validated before appearing in the general release. The release channel receives updates from the beta channel periodically.</p>
+        <p>The mozilla-central, mozilla-aurora, and mozilla-beta channels receive frequent updates so changes to the program can be validated before appearing in the general release. The release channel receives updates from the beta channel periodically.</p>
         <p>Under this system, there is a choice to ship a general Firefox release at week 16 and every six weeks thereafter. That doesn't mean a release will happen every six weeks, but the option will be available.</p>
         <h2>Moving work from one channel to another</h2>
         <p>New code migrates from one repository to another on a fixed schedule. For example, in the diagram above, new code from mozilla-central arrives in week 6, 12, and 18. It might seem expedient to land new features from mozilla-central as soon as they are "ready", but such a pattern would introduce too many variables into stability measurements. The one exception to this schedule is that unscheduled releases may be required for <b>critical security and stability</b> issues.</p>
@@ -352,13 +352,13 @@
         <p class="l10ncode">The majority of localization teams finish their work on the product.</p>
         <h2>Week 11</h2>
         <p>Release management makes a Go/No Go decision on whether the mozilla-aurora channel can be pulled.</p>
-        <p>If the decision is made to Go, a repository pull from mozilla-aurora to firefox-beta is done.</p>
+        <p>If the decision is made to Go, a repository pull from mozilla-aurora to mozilla-beta is done.</p>
         <p class="l10ncode">Only minor changes to localizations are still taken.</p>
         <h2>Week 12-13</h2>
-        <p>Release management, QA, and engineering work to stabilize any issues that arise as the code is exposed to the firefox-beta channel's wider audience.</p>
+        <p>Release management, QA, and engineering work to stabilize any issues that arise as the code is exposed to the mozilla-beta channel's wider audience.</p>
         <p>Security patches from the shadow security repository are landed. <font color="red"><b>n.b.: exact timing and mechanics undecided.</b></font></p>
         <h2>Week 14</h2>
-        <p>Release management makes a Go/No Go to make release the contents of the firefox-beta channel to the general audience.</p>
+        <p>Release management makes a Go/No Go to make release the contents of the mozilla-beta channel to the general audience.</p>
         <h2>Week 16</h2>
         <p>If there's a release to do, it happens during this week.</p>
         <p class="l10ncode">Localizations that are in beta are not pulled into the release channel.</p>
@@ -449,7 +449,7 @@
       <div class="body-text">
         <p>The goal of this proposed initial release pattern is to limit patch build up in mozilla-central, as well as establish a regular six week cadence for release go/no-go decisions thereafter.</p>
         <h2>Channel Update System</h2>
-        <p>For this plan to work at all, we need establish the mozilla-aurora and firefox-beta channels. The plan is to seed them with roughly 500K users on the experimental channel, and about 1.5 million people on the firefox-beta channel. We'll use the current Firefox 4 beta audience for this. Once the channels are available as a choice in the general Firefox release, their audiences should grow.</p>
+        <p>For this plan to work at all, we need establish the mozilla-aurora and mozilla-beta channels. The plan is to seed them with roughly 500K users on the experimental channel, and about 1.5 million people on the mozilla-beta channel. We'll use the current Firefox 4 beta audience for this. Once the channels are available as a choice in the general Firefox release, their audiences should grow.</p>
         <p>There's also a dependency on the updater code and UI needed for this system in the first place, and it will be difficult to get it done in time.</p>
         <h2>Security Releases</h2>
         <p>This proposal makes security updates occur along with Firefox releases, meaning we'll no longer be maintaining old branches. Having security branches for each major update is untenable if we release as often as we aim to.</p>
