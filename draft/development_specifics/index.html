@@ -448,33 +448,25 @@
         </table>
 
 
-        <h2 id="localization">Localization</h2>
+        <a name="localization" /><h2 id="localization">Localization</h2>
         <p>Localization work will be split into similar repositories:</p>
 
         <ul>
-            <li>l10n-central</li>
-            <li>l10n-aurora</li>
-            <li>l10n-beta</li>
+            <li><a href="http://hg.mozilla.org/l10n-central/">http://hg.mozilla.org/l10n-central/</li></a>
+            <li><a href="http://hg.mozilla.org/releases/l10n/mozilla-aurora">http://hg.mozilla.org/releases/l10n/mozilla-aurora</a></li>
+            <li><a href="http://hg.mozilla.org/releases/l10n/mozilla-beta">http://hg.mozilla.org/releases/l10n/mozilla-beta</a></li>
             <li>l10n-release</li>
         </ul>
-
-        <p class="discussion">
-        Please be aware there is discussion about the l10n
-        repo names and their content.
-        Axel expressed the desire to have the current l10n-central repo
-        track mozilla-aurora and to create a new repo to track
-        mozilla-central. Christian feels the naming and content should
-        be consistent as it is easy to get confused about what content is where
-        and which mozilla-* repository l10n-* is shadowing.
-        Axel is the ultimate
-        decision-maker with respect to l10n repositories.</p>
 
         <p>There will be 8 or so locales that track mozilla-central,
         localizing alongside en-US development. Other locales can track
         mozilla-central if they would like to as well but they won't be
         asked to explicitly.</p>
-        <p>mozilla-central will be string frozen for en-US at the
-        mozilla-central &rarr; mozilla-aurora merge point. <strong>No
+
+        <p class="discussion">
+        TBD: Which specific 8 or so locales are best to follow mozilla-central? This seems to be a combination of locales comfortable localizing <b>before</b> string freeze, and also locales that are useful to developers, like right-to-left for example.</p> 
+        <p>mozilla-central will be string frozen for en-US at the 
+        mozilla-central &rarr; mozilla-aurora merge point. <strong>No 
         en-US string changes will be allowed on mozilla-aurora</strong>. The
         mozilla-central &rarr; mozilla-aurora merge date will happen on
         schedule so the string freeze should not come as a surprise.
@@ -483,7 +475,6 @@
         l10n-aurora, which tracks mozilla-aurora. <strong>This means
         most locales have 6 weeks to complete their localizations</strong>.
         </p>
-
 
         <h2 id="milestones">Schedule of Important Milestones</h2>
 
