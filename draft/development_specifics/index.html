@@ -531,6 +531,12 @@
             hg push
             </pre>
             </li>
+            <li>Tag and close old head on aurora.
+            <pre>
+            hg tag -R mozilla-aurora -r default FIREFOX_AURORA_<i>VERSION</i>
+            hg commit -R mozilla-aurora -r default --close-branch -m 'closing old head'
+            </pre>
+            </li>
             <li>Pull from m-c to a new head on aurora.
             <pre>
             hg pull -R mozilla-aurora -r AURORA_BASE_<i>YYYYMMDD</i> http://hg.mozilla.org/mozilla-central
