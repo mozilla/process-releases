@@ -562,17 +562,7 @@
             Note: some specific files need careful human review of any
             changes, even if there are no merge conflicts.  all.js,
             firefox.js, configure.in, mozconfig</li>
-            <li>Safety check:<br/>
-            Diff new-head-on-aurora vs m-c == list of all previous aurora
-            backouts (smaller list?)<br/>
-            Diff new-head-on-aurora vs old-head-on-aurora == list of new code
-            changes in m-c (bigger list?)<br/>
-            Diff new-head-on-aurora vs a throw-away merge between
-            new-head-on-aurora and old-head-on-aurora.<br/>
-            </li>
-            <li>Mark the original head as closed, to prevent accidental
-            landings on the wrong head.</li>
-            <li>Human needs to "hg push" back to aurora</li>
+            <li>Human needs to "hg push" back to mozill-aurora</li>
         </ol>
 
         <h2 id="chemspill">Rapid Release / Chemspill Updates</h2>
