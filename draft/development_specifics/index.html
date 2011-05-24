@@ -537,9 +537,9 @@
             hg commit -R mozilla-aurora -r default --close-branch -m 'closing old head'
             </pre>
             </li>
-            <li>Pull from m-c to a new head on aurora.
+            <li>Push from m-c to a new head on aurora.
             <pre>
-            hg pull -R mozilla-aurora -r AURORA_BASE_<i>YYYYMMDD</i> http://hg.mozilla.org/mozilla-central
+            hg push -f -R mozilla-central mozilla-aurora
             </pre>
             </li>
             <li>Bump aurora version.
@@ -564,7 +564,7 @@
             Note: some specific files need careful human review of any
             changes, even if there are no merge conflicts.  all.js,
             firefox.js, configure.in, mozconfig</li>
-            <li>Human needs to "hg push" back to mozill-aurora</li>
+            <li>Human needs to "hg push -f" back to mozill-aurora</li>
         </ol>
 
         <h2 id="chemspill">Rapid Release / Chemspill Updates</h2>
