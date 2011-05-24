@@ -524,8 +524,12 @@
             <pre>
             cd mozilla-aurora
             sed -i -e 's/a1/a2/g' browser/config/version.txt js/src/config/milestone.txt config/milestone.txt
+            (manually edit mobile/confvars.sh to bump the version)
             hg commit -m 'Version bump'
             </pre></li>
+            <li>Bump mozilla-central version.
+            (manually edit mobile/confvars.sh to bump the version)
+            </li>
             <li>Set aurora branding in browser/confvars.sh (MOZ_BRANDING_DIRECTORY=browser/branding/aurora)</li>
             <li>Human needs to review list of changes since the last
             AURORA_BASE_<i>YYYYMMDD</i> tag, and figure out which changes to
