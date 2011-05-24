@@ -557,7 +557,9 @@
             AURORA_BASE_<i>YYYYMMDD</i> tag, and figure out which changes to
             bring forward, and which changes to throw away.</li>
             <li>Use "hg transplant" to take the changes we want to bring
-            forward and bring over to the new head.</li>
+            forward and bring over to the new head. Make note of the related
+            bugs, and comment in them to notify the relevant stakeholders
+            that they've been transplanted to mozilla-aurora.</li>
             <li>Human needs to resolve any merge conflicts.<br/>
             Note: some specific files need careful human review of any
             changes, even if there are no merge conflicts.  all.js,
