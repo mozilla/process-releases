@@ -533,7 +533,7 @@
             </li>
             <li>Tag and close old head on aurora.
             <pre>
-            hg tag -R mozilla-aurora -r default FIREFOX_AURORA_<i>VERSION</i>
+            hg tag -R mozilla-aurora FIREFOX_AURORA_<i>VERSION</i>
             hg commit -R mozilla-aurora -r default --close-branch -m 'closing old head'
             </pre>
             </li>
@@ -542,15 +542,26 @@
             hg pull -u -R mozilla-aurora -r AURORA_BASE_<i>YYYYMMDD</i> http://hg.mozilla.org/mozilla-central
             </pre>
             </li>
-            <li>Bump aurora version.
+            <li>Update to the latest aurora
             <pre>
             cd mozilla-aurora
+            hg update -C
+            </pre>
+            </li>
+            <li>Bump xpcom version (only for the mozilla-central merge, see bug 653731)
+            <pre>
+            (manually edit xpcom/components/Module.h)
+            </pre></li>
+            <li>Bump aurora version.
+            <pre>
             sed -i -e 's/a1/a2/g' browser/config/version.txt js/src/config/milestone.txt config/milestone.txt
+            (for beta 's/a1/a2/g' is 's/a2//g')
             (manually edit mobile/confvars.sh to bump the version)
             hg commit -m 'Version bump'
             </pre></li>
             <li>Bump mozilla-central version.
             (manually edit mobile/confvars.sh to bump the version)
+            (skip this step for mozilla-aurora &rarr; mozilla-beta)
             </li>
             <li>Set aurora branding in browser/confvars.sh (MOZ_BRANDING_DIRECTORY=browser/branding/aurora)</li>
             <li>Human needs to review list of changes since the last
@@ -562,6 +573,12 @@
             Note: some specific files need careful human review of any
             changes, even if there are no merge conflicts.  all.js,
             firefox.js, configure.in, mozconfig</li>
+            <li>Use <a href="https://build.mozilla.org/clobberer/">clobberer</a>
+            to
+            clobber all builds on mozilla-aurora.  This should be done
+            immediately before the following step (so there are no other
+            pushes in between).
+            </li>
             <li>Human needs to "hg push" back to mozill-aurora</li>
         </ol>
 
