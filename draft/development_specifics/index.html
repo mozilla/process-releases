@@ -523,7 +523,7 @@
         <p>The following describes the mozilla-central to mozilla-aurora mechanics. mozilla-aurora to mozilla-beta mechanics follow the same steps, with the exception of tagging (use BETA_BASE_<i>YYYYMMDD</i>), and versioning (strip off the a2 suffix).</p>
         <ol>
             <li>Never delete the aurora repo, we need the history.</li>
-            <li>Tag m-c with AURORA_BASE_<i>YYYYMMDD</i>.
+            <li>Tag mozilla-central with AURORA_BASE_<i>YYYYMMDD</i>.
             <pre>
             hg tag -R mozilla-central AURORA_BASE_`date +%Y%m%d`
             hg out
@@ -537,9 +537,9 @@
             hg commit -R mozilla-aurora -r default --close-branch -m 'closing old head'
             </pre>
             </li>
-            <li>Pull from m-c to a new head on aurora.
+            <li>Push from m-c to a new head on aurora.
             <pre>
-            hg pull -u -R mozilla-aurora -r AURORA_BASE_<i>YYYYMMDD</i> http://hg.mozilla.org/mozilla-central
+            hg pull -u -R mozilla-aurora -r AURORA_BASE_`date +%Y%m%d` http://hg.mozilla.org/mozilla-central
             </pre>
             </li>
             <li>Update to the latest aurora
@@ -568,7 +568,9 @@
             AURORA_BASE_<i>YYYYMMDD</i> tag, and figure out which changes to
             bring forward, and which changes to throw away.</li>
             <li>Use "hg transplant" to take the changes we want to bring
-            forward and bring over to the new head.</li>
+            forward and bring over to the new head. Make note of the related
+            bugs, and comment in them to notify the relevant stakeholders
+            that they've been transplanted to mozilla-aurora.</li>
             <li>Human needs to resolve any merge conflicts.<br/>
             Note: some specific files need careful human review of any
             changes, even if there are no merge conflicts.  all.js,
@@ -579,7 +581,7 @@
             immediately before the following step (so there are no other
             pushes in between).
             </li>
-            <li>Human needs to "hg push" back to mozill-aurora</li>
+            <li>Human needs to "hg push -f" back to mozilla-aurora</li>
         </ol>
 
         <h2 id="chemspill">Rapid Release / Chemspill Updates</h2>
