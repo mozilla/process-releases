@@ -77,13 +77,10 @@
     <div id="center">
       <div class="body-text">
         <h1>Mozilla Firefox: Development Specifics</h1>
-        <p style="color: red;"><b>Status: Draft</b></p>
 
         <h2 id="overview">Overview</h2>
-        <p>This document discusses specifics related to Mozilla's newly proposed
-        <a href="../development_overview/">Firefox development model</a>.
+        <p>This document discusses specifics related to Mozilla's <a href="../development_overview/">Firefox development model</a>.
         </p>
-        <p>Please note this is a draft document and subject to change.</p>
         <p>Discussion should take place on <a href="https://groups.google.com/group/mozilla.dev.planning">dev-planning</a> and changes
         should be submitted as
         <a href="https://github.com/mozilla/process-releases">pull requests on GitHub</a>.</p>
@@ -111,30 +108,8 @@
                     <h3>mozilla-release</h3>
                     <p>Repository for code to generate officially released
                     Firefox binaries</p>
-                    <p class="question">Why not copy to releases/mozilla-X.Y?
-                    We currently do so to have a repo to use for
-                    .x releases. Because this new model doesn't have .x
-                    releases (only chemspill/rapid response updates) we don't
-                    need to copy to the releases directory and deal with the
-                    version naming. That being said, we could still do
-                    so if we wanted to but there doesn't appear to be
-                    much benefit/point. <strong>Please give feedback</strong>.
-                    </p>
                 </li>
             </ul>
-            <p> The general naming scheme should work
-            equally well for other products if they decide to follow the same
-            development/channel/repo model. Also note if in the future
-            Firefox releases
-            split from platform releases the naming scheme does
-            not need to change...we would merely create firefox-* repositories.
-            </p>
-            <p>
-            mozilla-central was chosen as the main development repository name
-            due to familiarity, to prevent developers from
-            having to alter their local repos, and to prevent
-            needless changes to tools.
-           </p>
 
            <h3 id="repo-processes">Development vs Release</h3>
            <p>The repositories can generally be grouped into two overall
@@ -158,14 +133,6 @@
                 <h3>nightly</h3>
                 <table>
                     <tr>
-                        <th>Current Users</th>
-                        <td>50,000</td>
-                    </tr>
-                    <tr>
-                        <th>Anticipated Users</th>
-                        <td>100,000</td>
-                    </tr>
-                    <tr>
                         <th>Type of User</th>
                         <td>Mozilla developers and power users willing to
                             risk massive instability to see and test the
@@ -178,26 +145,17 @@
                     </tr>
                     <tr>
                         <th>Signed</th>
-                        <td>No</td>
+                        <td>Yes</td>
                     </tr>
                     <tr>
                         <th>Branded</th>
-                        <td>Not branded as Firefox, uses new "Nightly" icon</td>
+                        <td>Not branded as Firefox, uses "Nightly" branding</td>
                     </tr>
                 </table>
-                <p>Our current nightly audience.</p>
             </li>
             <li>
                 <h3>aurora</h3>
                 <table>
-                    <tr>
-                        <th>Current Users</th>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <th>Anticipated Users</th>
-                        <td>1 million</td>
-                    </tr>
                     <tr>
                         <th>Type of User</th>
                         <td>Power users willing
@@ -212,66 +170,26 @@
                     </tr>
                     <tr>
                         <th>Signed</th>
-                        <td>No</td>
+                        <td>Yes</td>
                     </tr>
                     <tr>
                         <th>Branded</th>
-                        <td>Not branded as Firefox, uses new "Aurora" icon</td>
+                        <td>Not branded as Firefox, uses "Firefox Developer Edition" branding</td>
                     </tr>
                 </table>
                 <p>
-                This is a new channel. We will discuss populating this channel artificially if need be. The hope is people will self-select into this channel (either by downloading a build or using the in-product channel switcher) due to the balance of new features and stability.</p>
             </li>
             <li>
                 <h3>beta</h3>
                 <table>
                     <tr>
-                        <th>Current Users</th>
-                        <td>2.78 million</td>
-                    </tr>
-                    <tr>
-                        <th>Anticipated Users</th>
-                        <td>10 million</td>
-                    </tr>
-                    <tr>
                         <th>Type of User</th>
-                        <td>Current beta channel users</td>
+                        <td>Users willing to help test early versions of Firefox
+                            during the last round of stability refinement.</td>
                     </tr>
                     <tr>
                         <th>Anticipated Update Rate</th>
-                        <td>weekly (highly dependent on found issues)</td>
-                    </tr>
-                    <tr>
-                        <th>Signed</th>
-                        <td>Yes, same as release</td>
-                    </tr>
-                    <tr>
-                        <th>Branded</th>
-                        <td>Branded as Firefox</td>
-                    </tr>
-                </table>
-                <p>This is the current beta channel / audience.</p>
-            </li>
-            <li>
-                <h3>release</h3>
-                <table>
-                    <tr>
-                        <th>Current Users</th>
-                        <td>100+ million</td>
-                    </tr>
-                    <tr>
-                        <th>Anticipated Users</th>
-                        <td>100+ million</td>
-                    </tr>
-                    <tr>
-                        <th>Type of User</th>
-                        <td>
-                            Normal Firefox users
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Anticipated Update Rate</th>
-                        <td>6-12 weeks</td>
+                        <td>twice weekly</td>
                     </tr>
                     <tr>
                         <th>Signed</th>
@@ -282,7 +200,30 @@
                         <td>Branded as Firefox</td>
                     </tr>
                 </table>
-                <p>This is the current release channel. When a build is offered
+            </li>
+            <li>
+                <h3>release</h3>
+                <table>
+                    <tr>
+                        <th>Type of User</th>
+                        <td>
+                            Normal Firefox users
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Anticipated Update Rate</th>
+                        <td>6 weeks</td>
+                    </tr>
+                    <tr>
+                        <th>Signed</th>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <th>Branded</th>
+                        <td>Branded as Firefox</td>
+                    </tr>
+                </table>
+                <p>When a build is offered
                 on this channel it means a new version of Firefox has been
                 officially released.
                 </p>
@@ -298,7 +239,6 @@
                     <li>Project repository merges</li>
                     <li>en-US changes</li>
                     <li>Some localization</li>
-                    <li>Merge from mozilla-shadow into mozilla-central just before the mozilla-central &rarr; mozilla-aurora merge point (additional details below)</li>
                 </ul>
             </li>
             <li>
@@ -310,9 +250,6 @@
                     <li>Remaining localizations</li>
                     <li>Landing spot fixes to get the product in a shipping
                         state</li>
-                    <li>Merge from mozilla-shadow (see below)
-                        and fixes/backouts for any
-                        resulting issues</li>
                     <li>Preffing off and backing out fixes/features which
                         were deemed ready but testing determined they in fact
                         were not</li>
@@ -338,12 +275,6 @@
          </ul>
 
         <h2 id="versioning">Versioning</h2>
-
-
-        <p>Because updates are (intended) to be silent and automatic
-        we can generally assume a user on a given channel is on the
-        latest available build. This assumption simplifies things greatly.
-        </p>
 
         <h3 id="versioning-firefox">Firefox Versioning</h3>
 
@@ -379,98 +310,14 @@
             For Firefox 5, the gecko version will be 5.0, for
             Firefox 6, 6.0, etc.
         </p>
-        <p class="note">Please note that binary extensions will
-        <a href="http://hg.mozilla.org/mozilla-central/rev/200a746e0fac">already need to
-        be recompiled for Firefox 5</a>.
-        </p>
-
-        <h2 id="project-repos">Project Repositories</h2>
-        <p>Project repositories are cheap and developers should not hesitate
-        to <a href="https://wiki.mozilla.org/ReleaseEngineering:ProjectBranchPlanning">ask for one.</a>
-
-        <p>Project repositories should be grouped by team or area in
-           subdirectories under
-           <em>hg.mozilla.org/projects</em>.
-            In this scheme Tracemonkey can be found
-           at <em>hg.mozilla.org/projects/js/tracemonkey</em>.
-            Additional repos
-           for the js team would be created in
-           <em>hg.mozilla.org/projects/js</em>
-           as well. This should keep hg.mozilla.org organized and enable
-           automated tools to enumerate the available project repositories
-           easily.
-        </p>
-
-        <p>Please note the above naming convention is different from what
-        was used in the past. Existing project repositories may need
-        to be moved around to fit in with the new scheme.</p>
-
-        <p>Project repositories automatically get an update channel when
-           nightly builds are enabled. The
-           naming convention for the channel is the path from root repo,
-           with slashes converted to dashes.
-           For the Tracemonkey example above, builds would be generated and
-           posted to <em>projects-js-tracemonkey</em>.
-        </p>
-
-
-        <p>Developers may also wish to check out one of the already existing
-            <a href="https://wiki.mozilla.org/ReleaseEngineering/DisposableProjectBranches">disposable project
-           repositories</a>.</p>
-
-        <p class="discussion">These naming conventions for project repositories
-        have not been widely discussed yet.
-         <strong>Please give feedback</strong>.
-        </p>
-
-        <h2 id="shadowrepo">The Shadow Repository</h2>
-        <p>Having a restricted shadow repository is new to Mozilla.
-        We are trying to balance the fact we are open source with
-        the need to secure our users by not publishing information about
-        security vulnerabilities before our users are protected.</p>
-        <p><strong>Most developers and users need not worry or care about
-        mozilla-shadow, so feel free to ignore it (most of the graphics omit
-        it for clarity).
-        </strong>
-        </p>
-        <h3>mozilla-shadow</h3>
-        <ul>
-            <li>Shadows mozilla-central and takes additional security fixes</li>
-            <li>Merges into mozilla-central just before the mozilla-central &rarr; mozilla-aurora merge point</li>
-        </ul>
-
-        <h3>shadow channel</h3>
-        <table>
-            <tr>
-                <th>Current Users</th>
-                <td>0</td>
-            </tr>
-            <tr>
-                <th>Anticipated Users</th>
-                <td>~10</td>
-            </tr>
-            <tr>
-                <th>Type of User</th>
-                <td>The security team and QA</td>
-            </tr>
-            <tr>
-                <th>Anticipated Update Rate</th>
-                <td>nightly</td>
-            </tr>
-            <tr>
-                <th>Branded</th>
-                <td>Not branded as Firefox</td>
-            </tr>
-        </table>
-
 
         <a name="localization" /><h2 id="localization">Localization</h2>
         <p>Localization work will be split into similar repositories:</p>
 
         <ul>
-            <li><a href="http://hg.mozilla.org/l10n-central/">http://hg.mozilla.org/l10n-central/</li></a>
-            <li><a href="http://hg.mozilla.org/releases/l10n/mozilla-aurora">http://hg.mozilla.org/releases/l10n/mozilla-aurora</a></li>
-            <li><a href="http://hg.mozilla.org/releases/l10n/mozilla-beta">http://hg.mozilla.org/releases/l10n/mozilla-beta</a></li>
+            <li><a href="https://hg.mozilla.org/l10n-central/">https://hg.mozilla.org/l10n-central/</li></a>
+            <li><a href="https://hg.mozilla.org/releases/l10n/mozilla-aurora">https://hg.mozilla.org/releases/l10n/mozilla-aurora</a></li>
+            <li><a href="https://hg.mozilla.org/releases/l10n/mozilla-beta">https://hg.mozilla.org/releases/l10n/mozilla-beta</a></li>
             <li>l10n-release</li>
         </ul>
 
@@ -479,8 +326,6 @@
         mozilla-central if they would like to as well but they won't be
         asked to explicitly.</p>
 
-        <p class="discussion">
-        TBD: Which specific 8 or so locales are best to follow mozilla-central? This seems to be a combination of locales comfortable localizing <b>before</b> string freeze, and also locales that are useful to developers, like right-to-left for example.</p> 
         <p>mozilla-central will be string frozen for en-US at the 
         mozilla-central &rarr; mozilla-aurora merge point. <strong>No 
         en-US string changes will be allowed on mozilla-aurora</strong>. The
@@ -497,23 +342,6 @@
         <p>In general, each stage of the process (and activity pertaining to
         a particular version) lasts for 6 weeks.<p>
         <p><img src="img/6_weeks.png"></p>
-
-        <h3 id="milestones-ff5">Firefox 5</h3>
-        <p>Firefox 5 will be slightly different from future releases due to
-        the development overlap (or lack thereof) with Firefox 4:</p>
-
-        <p><img src="img/ff5_schedule.png"></p>
-
-        <p>Rather than 6 weeks for mozilla-central, mozilla-aurora, and
-        mozilla-beta we instead have 3 weeks for development on
-        mozilla-central, 5 weeks to converge and stabilize on
-        mozilla-aurora, and 5 weeks to validate on mozilla-beta.</p>
-
-        <h3 id="milestones-ff6">Firefox 6</h3>
-        <p>Firefox 6 will start the normal schedule where every step in the
-        cycle takes 6 weeks. Firefox 6's development cycle starts when
-        Firefox 5 is cloned from mozilla-central to mozilla-aurora
-        (on 2011-04-12).</p>
 
         <p>Please do note that chemspills / rapid response updates are not
         reflected in these schedules and will be dealt with on an as-needed
@@ -539,7 +367,7 @@
             </li>
             <li>Push from m-c to a new head on aurora.
             <pre>
-            hg pull -u -R mozilla-aurora -r AURORA_BASE_`date +%Y%m%d` http://hg.mozilla.org/mozilla-central
+            hg pull -u -R mozilla-aurora -r AURORA_BASE_`date +%Y%m%d` https://hg.mozilla.org/mozilla-central
             </pre>
             </li>
             <li>Update to the latest aurora
@@ -576,18 +404,8 @@
             Note: some specific files need careful human review of any
             changes, even if there are no merge conflicts.  all.js,
             firefox.js, configure.in, mozconfig</li>
-            <li>Use <a href="https://build.mozilla.org/clobberer/">clobberer</a>
-            to
-            clobber all builds on mozilla-aurora.  This should be done
-            immediately before the following step (so there are no other
-            pushes in between).
-            </li>
             <li>Human needs to "hg push -f" back to mozilla-aurora</li>
         </ol>
-
-        <h2 id="chemspill">Rapid Release / Chemspill Updates</h2>
-        <p>We are still in the information gathering phase and will
-        have this section filled out in the next couple of days.</p>
 
         <h2 id="observations">General Observations</h2>
          <h3>Deferring work</h3>
@@ -618,9 +436,6 @@
             repository with a copy of the upstream. Because the
             merge/clone should never fail and it happens on a set schedule it
             will likely be automated.
-        </p>
-        <p>Please note in the section above there is still discussion on
-        what can be automated and the proper version control mechanics.
         </p>
         <h3>Preffing off / backing out happens after the clone</h3>
         <p>
